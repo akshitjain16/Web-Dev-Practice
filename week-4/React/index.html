@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>React foundation</title>
+  </head>
+  <body>
+    <div>
+      <input id="title" type="text" placeholder="title" /><br />
+      <br />
+      <input id="description" type="text" placeholder="description" /><br />
+      <br />
+      <button onclick="addTodo()">add todo</button><br /><br />
+      <div id="todos"></div>
+    </div>
+
+    <script>
+      // dom manipulation or adding elements to dom but this is not sufficient 
+
+
+      let globalId = 1;
+      // simple todo
+      function addTodo() {
+        const title = document.getElementById("title").value;
+        const description = document.getElementById("description").value;
+
+        // // appending todos to page
+        // // storing previous data and then adding new in previous one slightly ugly way to do
+        // const originalHtml = document.getElementById("todos").innerHTML;
+        // document.getElementById("todos").innerHTML =
+        //   originalHtml +
+        //   `<div>
+        //     <div>${title}</div>
+        //     <div>${description}</div>
+        //     <button>mark as done</button>
+        // </div>`;
+
+        //or
+        // better way to append elements is using document.createElement
+        // const outerDiv = document.createElement("div");
+        // outerDiv.innerHTML = title;
+        // document.getElementById("container").appendChild(outerDiv);
+
+        const parent = document.getElementById("todos");
+        parent.appendChild(createChild(title, description, globalId++));
+      }
+
+      function createChild(title, description, id) {
+        const child = document.createElement("div");
+        const firstGrandParent = document.createElement("div");
+        firstGrandParent.innerHTML = title;
+        const secondGrandParent = document.createElement("div");
+        secondGrandParent.innerHTML = description;
+        const thirdGrandParent = document.createElement("button");
+        thirdGrandParent.innerHTML = "Mark as Done";
+        thirdGrandParent.setAttribute("onClick", `markAsDone(${id})`)
+        child.appendChild(firstGrandParent);
+        child.appendChild(secondGrandParent);
+        child.appendChild(thirdGrandParent);
+        child.setAttribute("id", id);
+        return child;
+      }
+
+      function markAsDone(Id) {
+        const parent = document.getElementById(Id);
+        parent.children[2].innerHTML = "Done!";
+      }
+    </script>
+  </body>
+</html>
+

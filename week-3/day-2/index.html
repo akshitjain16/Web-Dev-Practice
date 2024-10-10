@@ -1,0 +1,32 @@
+// using fetch as to get data from database using api call
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function getAnimalData() {
+        // async call or returns a promise
+        //fetch mei backend ka api de dena
+        const response = fetch("http://localhost:3000/data").then(
+          (response) => {
+            response.json().then((finalData) => {
+              document.getElementById("userId").innerHTML = JSON.stringify(finalData);
+            });
+          }
+        );
+      }
+
+      // or using async await -quite easier way to do
+      async function getAnimalData() {
+        const response = await fetch("http://localhost:3000/data");
+        const finalData = await response.json().console.log(finalData);
+      }
+    </script>
+    <button onclick="getAnimalData()" id="userId">get Data</button>
+  </body>
+</html>

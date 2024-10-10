@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="buttonParent"></div>
+
+    <script>
+      // making state change and re-render the component that how react works under the hood for updating Dom.
+      //  defining state variable
+      let state = {
+        count: 0,
+      };
+
+      // changing the state
+      function onButtonPress() {
+        state.count++;
+        buttonComponentRerender();
+      }
+
+      //rerendring the component 
+      function buttonComponentRerender() {
+        document.getElementById("buttonParent").innerHTML = "";
+        // calling component button
+        const component = buttonComponent(state.count);
+        document.getElementById("buttonParent").appendChild(component);
+      }
+
+      // component for button
+      function buttonComponent(count) {
+        const button = document.createElement("button");
+        button.innerHTML = `counter  ${count}`;
+        button.setAttribute("onClick", `onButtonPress()`);
+        // <button onclick="onButtonPressed">
+        return button;
+      }
+
+      //first empty render with value 0
+      buttonComponentRerender();
+
+    </script>
+  </body>
+</html>

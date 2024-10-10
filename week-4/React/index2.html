@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>React foundation</title>
+  </head>
+  <body>
+    <div>
+      <input id="title" type="text" placeholder="title" /><br />
+      <br />
+      <input id="description" type="text" placeholder="description" /><br />
+      <br />
+      <div id="todos"></div>
+    </div>
+
+    <script>
+      //make an array or inmemory database such that every time it updates and array and then fetch the updated array elements only.
+      // complex todo app
+
+      function createChild(title, description, id) {
+        const child = document.createElement("div");
+        const firstGrandParent = document.createElement("div");
+        firstGrandParent.innerHTML = title;
+        const secondGrandParent = document.createElement("div");
+        secondGrandParent.innerHTML = description;
+        const thirdGrandParent = document.createElement("button");
+        thirdGrandParent.innerHTML = "Mark as Done";
+        thirdGrandParent.setAttribute("onClick", `markAsDone(${id})`);
+        child.appendChild(firstGrandParent);
+        child.appendChild(secondGrandParent);
+        child.appendChild(thirdGrandParent);
+        child.setAttribute("id", id);
+        return child;
+      }
+
+      //state will always be an aaray
+      // every element of state have a title , description, id
+      //upadting chages by reremndering whole DOM
+      function updateDomState(state) {
+        const parent = document.getElementById("todos");
+        parent.innerHTML = "";
+        for (let i = 0; i < state.length; i++) {
+          const child = createChild(
+            state[i].title,
+            state[i].description,
+            state[i].id
+          );
+          parent.appendChild(child);
+        }
+      }
+
+      // logic behind react state 
+      window.setInterval(async()=>{
+        const res = await fetch("");
+        const json = await json();
+         updateDomState(json);
+      },5000)
+
+      // problem here or better sol can be dont clear whole dom just update the part which is changed
+
+    </script>
+  </body>
+</html>
+ 
