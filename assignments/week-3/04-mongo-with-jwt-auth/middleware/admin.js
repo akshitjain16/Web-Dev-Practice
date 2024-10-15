@@ -13,6 +13,7 @@ function adminMiddleware(req, res, next) {
     const decodedValue = jwt.verify (jwtToken, jwt_secret);
     //username , type: admin | user
     if(decodedValue.username){
+        req.username = decodedValue.username
         next();
     }
     else{

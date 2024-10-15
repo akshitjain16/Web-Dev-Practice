@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const { string, boolean } = require('zod');
 
 mongoose.connect (
-  "mongodb+srv://akshitjain:akshit1230@cluster0.5t5qw.mongodb.net/todos"
+  "mongo-db-url"
 )
 
 
