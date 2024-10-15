@@ -70,4 +70,4 @@ app.listen(port, ()=>{
 // then we created validations using zod and implement it
 // creating a database schema
 // creating routes and then creating schema data
-// now we have to put this schema in our database using mongoose in mongodb
+// now we have to put this schema in our database using mongoose or prisma in mongodb
